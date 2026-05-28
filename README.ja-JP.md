@@ -40,8 +40,11 @@
 2. Cloudflare PagesやVercelなどのプラットフォームにインポート
 
 ### Cloudflare Pages設定
-- ビルドコマンド：`pnpm run build`
+- ビルドコマンド：`pnpm run build:cf`
 - 出力ディレクトリ：`dist/output/public`
+- CI で `wrangler pages deploy` を使う場合、`CLOUDFLARE_API_TOKEN` は `wrangler login` より優先されます。対象アカウントに対する `Pages Edit` 権限を持つトークンを使用してください。
+- Wrangler で直接アップロードする場合は `dist/output/public` をデプロイしてください：`npx wrangler pages deploy dist/output/public --project-name <your-project-name>`
+- `pnpm run build:cf` は Nitro が生成する `_headers`、`_redirects`、`_routes.json` を自動で `dist/output/public` にコピーします。
 
 ### GitHub OAuth設定
 1. [GitHub Appを作成](https://github.com/settings/applications/new)

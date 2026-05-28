@@ -42,8 +42,11 @@
 2. 导入至目标平台
 
 ### Cloudflare Pages 配置
-- 构建命令：`pnpm run build`
+- 构建命令：`pnpm run build:cf`
 - 输出目录：`dist/output/public`
+- 若在 CI 中使用 `wrangler pages deploy`，环境变量 `CLOUDFLARE_API_TOKEN` 会覆盖 `wrangler login`。请确保该 Token 对目标账号具备 `Pages Edit` 权限。
+- 若使用 Wrangler 直传，请部署 `dist/output/public`：`npx wrangler pages deploy dist/output/public --project-name <你的项目名>`
+- `pnpm run build:cf` 会自动把 Nitro 生成的 `_headers`、`_redirects`、`_routes.json` 复制到 `dist/output/public`。
 
 ### GitHub OAuth 配置
 1. [创建 GitHub App](https://github.com/settings/applications/new)

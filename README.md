@@ -45,8 +45,11 @@ For deployments without login and caching:
 
 ### Cloudflare Page Configuration
 
-- Build command: `pnpm run build`
+- Build command: `pnpm run build:cf`
 - Output directory: `dist/output/public`
+- If you deploy with `wrangler pages deploy` in CI, `CLOUDFLARE_API_TOKEN` takes precedence over `wrangler login`. Make sure the token has `Pages Edit` access for the target account.
+- For direct upload with Wrangler, deploy `dist/output/public`: `npx wrangler pages deploy dist/output/public --project-name <your-project-name>`
+- `pnpm run build:cf` copies Nitro's Pages metadata files (`_headers`, `_redirects`, `_routes.json`) into `dist/output/public` automatically.
 
 ### GitHub OAuth Setup
 
